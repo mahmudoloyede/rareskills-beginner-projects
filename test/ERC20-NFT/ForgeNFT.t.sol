@@ -13,7 +13,7 @@ contract ForgeNFTTest is Test {
         forge = new Forge();
         forgeNft = new ForgeNFT(address(forge));
     }
-    
+
     function testNameAndSymbol() public {
         assertEq(forgeNft.name(), "ForgeNFT");
         assertEq(forgeNft.symbol(), "FN");
@@ -34,15 +34,15 @@ contract ForgeNFTTest is Test {
         assertEq(forgeNft.ownerOf(tokenId), address(this));
     }
 
-    function onERC721Received(address operator, address from, uint256 tokenId, bytes calldata data)
-        external
-        view
-        returns (bytes4)
-    {
-        console.log(operator);
-        console.log(from);
-        console.log(tokenId);
-        console.logBytes(data);
-        return this.onERC721Received.selector;
-    }
+    // function onERC721Received(address operator, address from, uint256 tokenId, bytes calldata data)
+    //     external
+    //     view
+    //     returns (bytes4)
+    // {
+    //     console.log(operator);
+    //     console.log(from);
+    //     console.log(tokenId);
+    //     console.logBytes(data);
+    //     return this.onERC721Received.selector;
+    // }
 }
