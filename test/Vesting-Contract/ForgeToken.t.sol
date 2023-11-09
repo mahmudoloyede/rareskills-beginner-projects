@@ -2,7 +2,7 @@
 pragma solidity ^0.8.13;
 
 import {Test, console} from "forge-std/Test.sol";
-import {Forge} from "../../src/ERC20-NFT/ForgeToken.sol";
+import {Forge} from "../../src/Vesting-Contract/ForgeToken.sol";
 
 contract ForgeTest is Test {
     Forge public forge;
