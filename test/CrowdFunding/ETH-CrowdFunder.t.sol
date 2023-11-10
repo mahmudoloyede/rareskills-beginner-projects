@@ -73,6 +73,7 @@ contract CrowdFunderTest is Test {
         (,, balance,) = crowdfunder.fundraisers(1);
         assertEq(balance, 13 ether);
         assertEq(crowdfunder.donations(1, address(0xdead)), 3 ether);
+        assertEq(address(crowdfunder).balance, 22 ether);
     }
 
     function testWithdrawFailsWhenInvalidId() public {
@@ -98,7 +99,7 @@ contract CrowdFunderTest is Test {
     }
 
     function testWithrawToCreator() public {
-        // Can only be withdrawn to creator if deadline not reached
+        // Can only be withdrawn to creator if deadline not reached and goal reached
         uint256 thisBalanceBeforeWithdraw = address(this).balance;
         crowdfunder.createFundraiser(5 ether, 2 days);
         hoax(address(0xbad), 3 ether);
@@ -122,7 +123,7 @@ contract CrowdFunderTest is Test {
     }
 
     function testDonorWithdrawals() public {
-        // donor can only withdraw their donations when deadline reaches
+        // donors can only withdraw their donations when deadline reaches
         crowdfunder.createFundraiser(10 ether, 7 days);
         crowdfunder.createFundraiser(20 ether, 5 days);
         vm.warp(2 days + 1);
