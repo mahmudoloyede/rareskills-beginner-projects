@@ -2,7 +2,7 @@
 pragma solidity 0.8.20;
 
 import {Test, console} from "forge-std/Test.sol";
-import {Sample} from "../../src/NFT-Swap-Contract/Sample-NFT.sol";
+import {Sample} from "./Sample-NFT.sol";
 import {Swapper} from "../../src/NFT-Swap-Contract/NFT-Swap-Contract.sol";
 
 contract SwapperTest is Test {

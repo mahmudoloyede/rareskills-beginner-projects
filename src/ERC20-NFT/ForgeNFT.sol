@@ -2,21 +2,21 @@
 pragma solidity 0.8.20;
 
 import {ERC721} from "openzeppelin-contracts/contracts/token/ERC721/ERC721.sol";
-import {Forge} from "./ForgeToken.sol";
+import {IERC20} from "./IERC20.sol";
 
 contract ForgeNFT is ERC721 {
     uint256 public totalSupply;
     uint256 public constant PRICE = 0.01 ether;
-    Forge public forge;
+    address public tokenAddress;
 
-    constructor(address _forge) ERC721("ForgeNFT", "FN") {
-        forge = Forge(_forge);
+    constructor(address _tokenAddress) ERC721("ForgeNFT", "FN") {
+        tokenAddress = _tokenAddress;
     }
 
     function mint() public {
-        require(forge.transferFrom(msg.sender, address(this), PRICE), "transfer failed!");
+        IERC20 token = IERC20(tokenAddress);
+        token.transferFrom(msg.sender, address(this), PRICE);
         uint256 tokenId = totalSupply++;
         _mint(msg.sender, tokenId);
-        // _safeMint(msg.sender, tokenId);
     }
 }

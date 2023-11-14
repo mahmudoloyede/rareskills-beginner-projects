@@ -2,7 +2,7 @@
 pragma solidity ^0.8.13;
 
 import {Test, console} from "forge-std/Test.sol";
-import {Forge} from "../../src/ERC20-NFT/ForgeToken.sol";
+import {Forge} from "./ForgeToken.sol";
 import {ForgeNFT} from "../../src/ERC20-NFT/ForgeNFT.sol";
 
 contract ForgeNFTTest is Test {
@@ -33,16 +33,4 @@ contract ForgeNFTTest is Test {
         assertEq(forgeNft.totalSupply(), tokenId + 1);
         assertEq(forgeNft.ownerOf(tokenId), address(this));
     }
-
-    // function onERC721Received(address operator, address from, uint256 tokenId, bytes calldata data)
-    //     external
-    //     view
-    //     returns (bytes4)
-    // {
-    //     console.log(operator);
-    //     console.log(from);
-    //     console.log(tokenId);
-    //     console.logBytes(data);
-    //     return this.onERC721Received.selector;
-    // }
 }

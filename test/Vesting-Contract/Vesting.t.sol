@@ -3,7 +3,7 @@ pragma solidity ^0.8.13;
 
 import {Test, console} from "forge-std/Test.sol";
 import {Vesting} from "../../src/Vesting-Contract/Vesting.sol";
-import {Forge} from "../../src/Vesting-Contract/ForgeToken.sol";
+import {Forge} from "./ForgeToken.sol";
 
 contract VestingTest is Test {
     Vesting public vesting;
@@ -23,7 +23,7 @@ contract VestingTest is Test {
     function test_SetUp_State() public {
         assertEq(vesting.receiver(), address(0xdead));
         assertEq(vesting.vestingPeriod(), 5 days);
-        assertEq(address(vesting.token()), address(token));
+        assertEq(vesting.tokenAddress(), address(token));
     }
 
     function testDepositFailsWithNoAllowance() public {
